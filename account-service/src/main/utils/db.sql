@@ -3,7 +3,7 @@ CREATE TABLE account (
     name VARCHAR(100) NOT NULL,
     document VARCHAR(20),
     email VARCHAR(100),
-    status_code INTEGER,
-    updated_at TIMESTAMP,
-    created_at TIMESTAMP
+    status_code INTEGER default 0,
+    updated_at TIMESTAMP default now(),
+    created_at TIMESTAMP default now()
 );
