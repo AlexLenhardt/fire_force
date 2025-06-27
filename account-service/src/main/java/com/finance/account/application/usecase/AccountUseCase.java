@@ -6,4 +6,5 @@ import com.finance.account.shared.exception.ApiError;
 
 public interface AccountUseCase {
     ApiError create(Account account);
+    ApiError get(Account account);
 }

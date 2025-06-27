@@ -1,10 +1,13 @@
 package com.finance.account.infrastructure.persistence.entity;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class Account {
 
-    private String id;
+    private UUID uuid;
     private String name;
     private String document;
     private String email;
@@ -14,15 +17,19 @@ public class Account {
 
     // Construtor
     public Account(
-        String id,
+        UUID uuid,
         String name,
         String document,
         String email,
         Integer statusCode,
+        
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         LocalDateTime updatedAt,
+        
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         LocalDateTime createdAt
     ) {
-        this.id = id;
+        this.uuid = uuid;
         this.name = name;
         this.document = document;
         this.email = email;
@@ -32,8 +39,8 @@ public class Account {
     }
 
     // Getters
-    public String getId() {
-        return id;
+    public UUID getUUID() {
+        return uuid;
     }
 
     public String getName() {
@@ -61,8 +68,8 @@ public class Account {
     }
 
     // Setters
-    public void setId(String id) {
-        this.id = id;
+    public void setUUID(UUID uuid) {
+        this.uuid = uuid;
     }
 
     public void setName(String name) {
