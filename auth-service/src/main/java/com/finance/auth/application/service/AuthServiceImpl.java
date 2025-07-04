@@ -1,14 +1,16 @@
 package com.finance.auth.application.service;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import static com.finance.auth.domain.exception.AuthException.ERRO_DESCONHECIDO;
 import com.finance.auth.domain.service.AuthService;
 import com.finance.auth.domain.usecase.AuthUseCase;
-import com.finance.auth.infrastructure.persistence.entity.User;
 import com.finance.auth.infrastructure.persistence.entity.ApiError;
+import com.finance.auth.infrastructure.persistence.entity.User;
 
 @RestController
 @RequestMapping("/auth")
@@ -21,9 +23,9 @@ class AuthServiceImpl implements AuthService {
 
     @Override
     @PostMapping
-    public ApiError createUser(User user) {
-        authUseCase.createUser(user);
-        
-        return ERRO_DESCONHECIDO;
+    public ResponseEntity<ApiError> createUser(@RequestBody User user) {
+        ApiError r = authUseCase.createUser(user);
+
+        return ResponseEntity.status(r.getStatus()).body(r);
     }
 }
